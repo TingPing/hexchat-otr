@@ -219,6 +219,8 @@ int hook_privmsg (char *word[], char *word_eol[], void *userdata)
 	};
 	hexchat_context *query_ctx;
 
+        if (word[3][0] == '#') /* ignore channel message */
+                return HEXCHAT_EAT_NONE;
 	if (!extract_nick (nick, word[1], sizeof(nick)))
 		return HEXCHAT_EAT_NONE;
 
