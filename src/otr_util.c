@@ -151,9 +151,10 @@ char *otr_send (IRC_CTX *ircctx, const char *msg, const char *to)
 
 	g_snprintf (accname, sizeof(accname), "%s@%s", nick, address);
 
-	if (!(co = otr_getcontext (accname, to, FALSE, ircctx)))
+	if (!(co = otr_getcontext (accname, to, TRUE, ircctx)))
 	{
-		otr_notice (ircctx, to, TXT_SEND_CHANGE);
+		otr_noticest (TXT_CTX_NOT_CREATE,
+                                          accname, to);
 		return NULL;
 	}
 
