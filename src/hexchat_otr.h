@@ -45,6 +45,18 @@ extern hexchat_plugin *ph; /* plugin handle */
 
 void printformat (IRC_CTX *ircctx, const char *nick, int lvl, int fnum, ...);
 
+/* The plugin interface */
+void hexchat_plugin_get_info (char **name,
+			      char **desc,
+			      char **version,
+			      void **reserved);
+int hexchat_plugin_init (hexchat_plugin *plugin_handle,
+			 char **plugin_name,
+			 char **plugin_desc,
+			 char **plugin_version,
+			 char *arg);
+int hexchat_plugin_deinit (void);
+
 #define otr_noticest(formatnum, ...) \
 	printformat (NULL, NULL, MSGLEVEL_MSGS, formatnum, ##__VA_ARGS__)
 
