@@ -9,7 +9,10 @@ import sys,os,re
 
 lines = map(lambda x: x.strip(),open(sys.argv[1],"r").readlines())
 
-out_dir = sys.argv[2] if len(sys.argv) > 2 or "."
+if len(sys.argv) > 2:
+	out_dir = sys.argv[2]
+else:
+	out_dir = "."
 hdr = open(os.path.join(out_dir, "otr-formats.h"), "w")
 srcx = open(os.path.join(out_dir, "hexchat-formats.c"), "w")
 
