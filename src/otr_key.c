@@ -96,8 +96,14 @@ static gboolean keygen_complete (GIOChannel *source, GIOCondition condition,
 	char *filename = g_strconcat (confdir, KEYFILE, NULL);
 	char *tmpfilename = g_strconcat (confdir, TMPKEYFILE, NULL);
 
-	read (g_io_channel_unix_get_fd (kg_st.ch[0]), &err, sizeof(err));
-
+	if (-1 == read (g_io_channel_unix_get_fd (kg_st.ch[0]), &err, sizeof(err)))
+	{
+		otr_noticest (TXT_KG_FAILED,
+					  kg_st.accountname,
+					  strerror(errno),
+					  "read failed");
+	}
+	
 	g_io_channel_shutdown (kg_st.ch[0], FALSE, NULL);
 	g_io_channel_shutdown (kg_st.ch[1], FALSE, NULL);
 	g_io_channel_unref (kg_st.ch[0]);
@@ -208,7 +214,10 @@ void keygen_run (const char *accname)
 	/* child */
 
 	err = otrl_privkey_generate (otr_state, filename, accname, PROTOCOLID);
-	write (fds[1], &err, sizeof(err));
+	if (sizeof(err) != write (fds[1], &err, sizeof(err)))
+	{
+		perror("keygen_run - unable to write to stdout pipe");
+	}
 
 	_exit (0);
 }
