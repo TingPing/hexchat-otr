@@ -15,6 +15,12 @@ Installation
 - libotr4
 - hexchat
 
+#### Installing on Ubuntu 16.04
+```
+sudo apt-get install libotr5 libotr5-dev gcrypt glib-2.0
+autoconf-archive libtk2.0-dev libperl-dev
+```
+
 ```sh
 ./autogen.sh
 make -s
