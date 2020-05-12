@@ -337,12 +337,12 @@ int hexchat_plugin_deinit (void)
 	return 1;
 }
 
-void otr_log(IRC_CTX *server, const char *nick, int level, const char *format, ...)
+void otr_log(IRC_CTX *server, const char *nick, enum lvls level, const char *format, ...)
 {
 	/* TODO: Implement me! */
 }
 
-void printformat (IRC_CTX *ircctx, const char *nick, int lvl, int fnum, ...)
+void printformat (IRC_CTX *ircctx, const char *nick, enum lvls lvl, int fnum, ...)
 {
 	va_list params;
 	va_start (params, fnum);
