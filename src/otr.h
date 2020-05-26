@@ -49,7 +49,7 @@
 	otr_log (NULL, NULL, level, format, ##__VA_ARGS__)
 
 void otr_log (IRC_CTX *server, const char *to,
-	      enum lvls level, const char *format, ...);
+	      MessageLevel level, const char *format, ...);
 
 /* own */
 

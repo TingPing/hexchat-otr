@@ -52,11 +52,11 @@ struct _FORMAT_REC
 
 typedef struct _FORMAT_REC FORMAT_REC;
 
-enum lvls
+typedef enum
 {
 	MSGLEVEL_CRAP,
 	MSGLEVEL_MSGS
-};
+} MessageLevel;
 
 extern hexchat_plugin *ph; /* plugin handle */
 
@@ -67,7 +67,7 @@ G_MODULE_EXPORT int hexchat_plugin_init (hexchat_plugin *plugin_handle,
                                          char **plugin_version,
                                          char *arg);
 G_MODULE_EXPORT void hexchat_plugin_get_info (char **name, char **desc, char **version, void **reserved);
-void printformat (IRC_CTX *ircctx, const char *nick, enum lvls lvl, int fnum, ...);
+void printformat (IRC_CTX *ircctx, const char *nick, MessageLevel lvl, int fnum, ...);
 
 #define otr_noticest(formatnum, ...) \
 	printformat (NULL, NULL, MSGLEVEL_MSGS, formatnum, ##__VA_ARGS__)
