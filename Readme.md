@@ -25,6 +25,12 @@ ninja -C builddir install
 
 #### System install
 
+#### Installing on Ubuntu 16.04
+```
+sudo apt-get install libotr5 libotr5-dev gcrypt glib-2.0
+autoconf-archive libtk2.0-dev libperl-dev
+```
+
 ```sh
 meson builddir
 ninja -C builddir
